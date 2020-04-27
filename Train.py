@@ -1,8 +1,4 @@
-'''
-Python 3.6 
-Pytorch >= 0.4
-Written by Hongyu Wang in Beihang university
-'''
+
 import torch
 import math
 import torch.nn as nn
@@ -47,8 +43,8 @@ def load_dict(dictFile):
 datasets=['./offline-train.pkl','./train_caption.txt']
 valid_datasets=['./offline-test.pkl', './test_caption.txt']
 dictionaries=['./dictionary.txt']
-batch_Imagesize=500000
-valid_batch_Imagesize=500000
+batch_Imagesize=512
+valid_batch_Imagesize=512
 # batch_size for training and testing
 batch_size=6
 batch_size_t=6
@@ -61,7 +57,7 @@ hidden_size = 256
 # teacher_forcing_ratio 
 teacher_forcing_ratio = 1
 # change the gpu id 
-gpu = [0,1]
+gpu = [0]
 # learning rate
 lr_rate = 0.0001
 # flag to remember when to change the learning rate
@@ -514,7 +510,7 @@ for epoch in range(200):
         print(exprate)
         print("saving the model....")
         print('encoder_lr%.5f_GN_te1_d05_SGD_bs6_mask_conv_bn_b_xavier.pkl' %(lr_rate))
-        torch.save(encoder.state_dict(), 'model/encoder_lr%.5f_GN_te1_d05_SGD_bs6_mask_conv_bn_b_xavier.pkl'%(lr_rate))
+        torch.save(encoder.state_dict(), '/content/drive/My Drive/AI_flowchart_dataset/HMER/1/model/encoder_lr%.5f_GN_te1_d05_SGD_bs6_mask_conv_bn_b_xavier.pkl'%(lr_rate))
         torch.save(attn_decoder1.state_dict(), 'model/attn_decoder_lr%.5f_GN_te1_d05_SGD_bs6_mask_conv_bn_b_xavier.pkl'%(lr_rate))
         print("done")
         flag = 0
